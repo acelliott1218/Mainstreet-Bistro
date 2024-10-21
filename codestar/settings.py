@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bistro',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,7 @@ DATABASES = {
     }
 }
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-acelliott12-mainstreetb-b8p1yos9q9k.ws-eu116.gitpod.io']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
