@@ -1,6 +1,7 @@
 import datetime
 from bistro.models import Table, Booking
 
+
 def is_free(table, reservation, end_time):
     #checks if the table is actually free, prevents double-booking of a table
     available=[]
