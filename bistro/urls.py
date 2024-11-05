@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import TableList, BookingList, BookingView
+from .views import TableListView, BookingList, BookingView, TableDetailView
 
 app_name='bistro'
 
 urlpatterns=[
+    path('table_list/', TableListView.as_view(), name='TableList'),
     path('booking_list/', BookingList.as_view(), name='BookingList'),
-    path('table_list/', TableList.as_view(), name='TableList'),
-    path('book/', BookingView.as_view(), name='booking_view')
+    path('book/', BookingView.as_view(), name='BookingView'),
+    path('table/<category>', TableDetailView.as_view(), name="TableDetailView" )
 ]
