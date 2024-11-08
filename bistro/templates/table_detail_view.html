@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/692189991f.js" crossorigin="anonymous"></script>
 
     <!-- Main StyleSheet -->
-    <link rel="stylesheet" href="{% static 'bistro/css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
 
 </head>
 
@@ -48,16 +48,16 @@
 
                 <!-- Input Div -->
                 <div class="input-div">
-                    <label for="id_check_in">Check In : </label>
-                    <input type="datetime-local" id="id_check_in" name="check_in">
+                    <label for="id_reservation">Reservation Time : </label>
+                    <input type="datetime-local" id="id_reservation" name="reservation" required>
                 </div>
 
                 <!-- Input Div -->
                 <div class="input-div">
-                    <label for="id_check_out">Check Out : </label>
-                    <input type="datetime-local" id="id_check_out" name="check_out">
+                    <label for="id_end_time">Check Out : </label>
+                    <input type="datetime-local" id="id_end_time" name="end_time">
                 </div>
-
+                
                 <!-- Input Div -->
                 <div class="input-div">
                     <button type="submit">Book the table</button>

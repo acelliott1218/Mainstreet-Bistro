@@ -10,7 +10,6 @@ class Table(models.Model):
         ('STB', 'STANDARD TABLE'),
         ('PTB', 'PARTY TABLE'),
         ('BTB', 'BANQUET TABLE'),
-        ('STL', 'STOOL'),
     )
     number = models.IntegerField()
     category = models.CharField(max_length=3, choices=TABLE_CATEGORIES)

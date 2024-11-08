@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zg(8#kyt3xc450ifjqif!c85(z5u@oepk!b0swhr-yv3wic+$x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-acelliott12-mainstreetb-5dwmhmsl7xx.ws-eu116.gitpod.io']
 
@@ -84,7 +84,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-acelliott12-mainstreetb-b8p1yos9q9k.ws-eu116.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-acelliott12-mainstreetb-5dwmhmsl7xx.ws-eu116.gitpod.io']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -120,7 +120,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
