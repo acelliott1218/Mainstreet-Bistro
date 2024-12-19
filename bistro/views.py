@@ -1,14 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, FormView, View
+from django.urls import reverse
 from .models import Table, Booking
 from .forms import AvailabilityForm
 from bistro.booking_functions.availability import is_free
 # Create your views here.
 
-class TableListView(ListView):
-    model=Table
-    template_name = 'table_list_view.html'
+def TableListView(request):
+    table = Table.objects.all()[0]
+    table_categories = dict(table.TABLE_CATEGORIES)
+    table_values = table_categories.values()
+    table_list=[]
+    for table_category in table_categories:
+        table = table_categories.get(table_category)
+        table_url = reverse('bistro:TableDetailView', kwargs={'category': table_category})
+        table_list.append((table, table_url))
+    context={
+        'table_list':table_list,
+    }
+    return render(request, 'table_list_view.html', context)
     
 class BookingList(ListView):
     model=Booking
