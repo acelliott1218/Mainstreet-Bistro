@@ -24,6 +24,13 @@ def TableListView(request):
 class BookingList(ListView):
     model=Booking
     template_name = 'booking_list.html'
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.is_staff:
+            booking_list = Booking.objects.all()
+            return booking_list
+        else:
+            booking_list = Booking.objects.filter(user=self.request.user)
+            return booking_list
 
 class TableDetailView(View):
     def get(self, request, *args, **kwargs):
