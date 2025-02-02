@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zg(8#kyt3xc450ifjqif!c85(z5u@oepk!b0swhr-yv3wic+$x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-acelliott12-mainstreetb-ev525vdvmhq.ws-eu117.gitpod.io']
+ALLOWED_HOSTS = ['8000-acelliott12-mainstreetb-kigzqbiz2jt.ws-eu117.gitpod.io']
 
 
 # Application definition
@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     #custom apps
     'bistro',
     'bistro.booking_functions',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +56,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'codestar.urls'
@@ -66,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -84,7 +96,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-acelliott12-mainstreetb-ev525vdvmhq.ws-eu117.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-acelliott12-mainstreetb-kigzqbiz2jt.ws-eu117.gitpod.io']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -116,12 +128,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
+#Email
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
