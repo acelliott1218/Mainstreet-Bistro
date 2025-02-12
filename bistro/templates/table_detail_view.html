@@ -45,7 +45,13 @@
             <form id="booking-form" action="" method="POST">
 
                 {% csrf_token %}
-
+                {% if form_errors %}
+                <ul>
+                    {% for field, errors in form_errors.items %}
+                        <li class="table">{{ errors }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <!-- Input Div -->
                 <div class="input-div">
                     <label for="id_reservation">Reservation Time : </label>
@@ -54,7 +60,7 @@
 
                 <!-- Input Div -->
                 <div class="input-div">
-                    <label for="id_end_time">Check Out : </label>
+                    <label for="id_end_time">End Time : </label>
                     <input type="datetime-local" id="id_end_time" name="end_time">
                 </div>
                 

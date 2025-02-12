@@ -70,7 +70,13 @@ class TableDetailView(View):
             else:
                 return HttpResponse('All of this category of tables are unavailable')
         else:
-            return HttpResponse(f'Invalid form data: {form.errors}')
+
+            context = {
+                'form': form,
+                'table_category': get_table_category_human(category),
+                'form_errors': form.errors
+            }
+            return render(request, 'table_detail_view.html', context)
 
 
 class CancelBookingView(DeleteView):
