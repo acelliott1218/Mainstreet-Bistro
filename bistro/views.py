@@ -68,9 +68,8 @@ class TableDetailView(View):
                 booking.save()
                 return HttpResponse(booking)
             else:
-                return HttpResponse('All of this category of tables are unavailable')
+                return HttpResponse('All of this category of tables are unavailable') #to be changed not
         else:
-
             context = {
                 'form': form,
                 'table_category': get_table_category_human(category),
