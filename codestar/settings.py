@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    #for scheduling reservations
+    'appointment'
 ]
 
 MIDDLEWARE = [
@@ -147,5 +150,7 @@ TIME_ZONE = 'Europe/Belgrade'
 USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+APPOINTMENT_WEBSITE_NAME = 'Mainstreet Bistro'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

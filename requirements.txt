@@ -1,0 +1,16 @@
+asgiref==3.8.1
+babel==2.16.0
+colorama==0.4.6
+Django==5.1.5
+django-allauth==65.3.1
+django-appointment==3.8.0
+django-phonenumber-field==8.0.0
+django-picklefield==3.2
+django-q2==1.7.6
+icalendar==6.1.1
+phonenumbers==8.13.54
+pillow==11.1.0
+python-dotenv==1.0.1
+setuptools==75.8.0
+sqlparse==0.5.3
+tzdata==2025.1
