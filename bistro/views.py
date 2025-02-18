@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, FormView, View, DeleteView
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Table, Booking
 from .forms import AvailabilityForm
 from bistro.booking_functions.availability import is_free
 from bistro.booking_functions.get_tab_category_list import *
 from bistro.booking_functions.get_table_category_human import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -31,25 +34,27 @@ class BookingList(ListView):
             return booking_list
 
 
-class TableDetailView(View):
+class TableDetailView(LoginRequiredMixin, View):
+    login_url = '/accounts/login/'
+
     def get(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
         tab_category_human = get_table_category_human(category)
         form = AvailabilityForm()
+        user = request.user
+        has_booking = Booking.objects.filter(user=user).exists()
         if tab_category_human is not None:
             context = {
                 'table_category': tab_category_human,
                 'form': form,
+                'has_booking': has_booking
             }
             return render(request, 'table_detail_view.html', context)
-        else:
-            return HttpResponse('Category does not exist')
 
     def post(self, request, *args, **kwargs):
         category = self.kwargs.get('category', None)
         table_list = Table.objects.filter(category=category)
         form = AvailabilityForm(request.POST)
-
         if form.is_valid():
             data = form.cleaned_data
 
@@ -68,7 +73,8 @@ class TableDetailView(View):
                 booking.save()
                 return HttpResponse(booking)
             else:
-                return HttpResponse('All of this category of tables are unavailable') #to be changed not
+                # to be changed not
+                return HttpResponse('All of this category of tables are unavailable')
         else:
             context = {
                 'form': form,

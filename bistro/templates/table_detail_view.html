@@ -48,7 +48,7 @@
                 {% if form_errors %}
                 <ul>
                     {% for field, errors in form_errors.items %}
-                        <li class="table">{{ errors }}</li>
+                    <li class="table">{{ errors }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -63,15 +63,22 @@
                     <label for="id_end_time">End Time : </label>
                     <input type="datetime-local" id="id_end_time" name="end_time">
                 </div>
-                
+
                 <!-- Input Div -->
+
+                {% if not has_booking %}
                 <div class="input-div">
                     <button type="submit">Book the table</button>
                 </div>
 
-            </form>
+                {% else %}
+                <div class="input-div">
+                    <li>You can only have one booking at a time!</li>
+                </div>
+                {% endif %}
+        </form>
 
-        </div> <!-- END table Div -->
+    </div> <!-- END table Div -->
 
     </div> <!-- END Main Content Div -->
 

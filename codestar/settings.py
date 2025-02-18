@@ -138,6 +138,13 @@ STATIC_ROOT = 'static/'
 #Email
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Login url
+LOGIN_URL = '/accounts/login/'
+
+#Time-zone enforcing
+TIME_ZONE = 'Europe/Belgrade'
+USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
