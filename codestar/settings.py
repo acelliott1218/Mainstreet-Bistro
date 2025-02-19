@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    #for scheduling reservations
-    'appointment'
+    #for the admin calendar
+    "django_flatpickr",
 ]
 
 MIDDLEWARE = [
@@ -125,11 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
-USE_TZ = True
 
 SITE_ID = 1
 
@@ -146,11 +142,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_URL = '/accounts/login/'
 
 #Time-zone enforcing
-TIME_ZONE = 'Europe/Belgrade'
+TIME_ZONE = 'UTC'
 USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-APPOINTMENT_WEBSITE_NAME = 'Mainstreet Bistro'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
