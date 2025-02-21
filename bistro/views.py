@@ -1,15 +1,20 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.views.generic import ListView, FormView, View, DeleteView
+from django.views.generic import ListView, FormView, View, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .models import Table, Booking
+from django.core.exceptions import PermissionDenied
+from django.utils import timezone
+from django.forms import ModelForm
+
+from .models import Table, Booking, WorkingHour
 from .forms import AvailabilityForm
+from bistro.booking_functions.booking_validator import validator
 from bistro.booking_functions.availability import is_free
 from bistro.booking_functions.get_tab_category_list import *
 from bistro.booking_functions.get_table_category_human import *
-from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -88,3 +93,34 @@ class CancelBookingView(DeleteView):
     model = Booking
     template_name = 'booking_cancel_view.html'
     success_url = reverse_lazy('bistro:BookingList')
+
+
+
+class BookingEditForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = ["reservation", "end_time"]
+
+    def clean(self):
+        data = super().clean()
+        reservation = data.get("reservation")
+        end_time = data.get("end_time")
+
+        if not reservation or not end_time:
+            return data  # Skip validation if fields are empty
+
+        validator(self, reservation, end_time, data)
+
+class EditBookingView(UpdateView):
+    model = Booking
+    form_class = BookingEditForm
+    template_name = "booking_edit_view.html"
+    success_url = reverse_lazy("bistro:BookingList")
+
+    def get_object(self, queryset=None):
+        booking = get_object_or_404(Booking, pk=self.kwargs["pk"])
+        if booking.user != self.request.user:
+            raise PermissionDenied("You cannot edit this booking.")
+        return booking
+
+
