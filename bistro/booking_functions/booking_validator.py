@@ -21,7 +21,9 @@ def validator(self, reservation, end_time, data):
 
     # Get working hours for the selected day
     working_hours = WorkingHour.objects.filter(day=reservation.weekday(), availability=0).first()
+    #defines when the reservation itself can begin -- that is, during working hours
     acceptable_start = working_hours.start_time <= reservation.time() <= working_hours.end_time
+    #likewise, defines when the reservation must end by
     acceptable_end = working_hours.start_time <= end_time.time() <= working_hours.end_time
 
     if not working_hours:

@@ -64,7 +64,7 @@ class TableDetailView(LoginRequiredMixin, View):
             context = {
                 'table_category': tab_category_human,
                 'form': form,
-                'has_booking': has_booking
+                'has_booking': has_booking #only relevant to hide the posting button
             }
             return render(request, 'table_detail_view.html', context)
 
@@ -77,6 +77,16 @@ class TableDetailView(LoginRequiredMixin, View):
         category = self.kwargs.get('category', None)
         table_list = Table.objects.filter(category=category)
         form = AvailabilityForm(request.POST)
+        user = request.user
+        has_booking = Booking.objects.filter(user=user).exists()
+        if has_booking:
+            form.add_error('reservation', 'You can only have one reservation at a time!')
+            context = {
+            'form': form,
+            'table_category': get_table_category_human(category),
+            'form_errors': form.errors
+            }
+            return render(request,'table_detail_view.html', context)
         if form.is_valid():
             data = form.cleaned_data
 
