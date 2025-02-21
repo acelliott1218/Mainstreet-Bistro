@@ -29,11 +29,20 @@ class WorkingHour(models.Model):
         (5, "Saturday"),
         (6, "Sunday"),
     )
+    OPEN_CLOSED = (
+        (0, "Yes"),
+        (1, "No")
+    )
     day = models.IntegerField(choices=DAY_CHOICES, unique=True)
+    availability = models.IntegerField(choices=OPEN_CLOSED, default=0)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
     def __str__(self):
-        return f"Reservation on {self.day} from {self.start_time} to {self.end_time}"
+        day_name = dict(self.DAY_CHOICES).get(self.day)
+        if self.availability == 1:
+            return f"Closed on {day_name}."
+        return f"Open on {day_name} from {self.start_time} to {self.end_time}"
 
 class Booking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

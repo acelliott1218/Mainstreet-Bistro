@@ -32,7 +32,7 @@ class AvailabilityForm(forms.Form):
             self.add_error('end_time', 'End time must be after the reservation start time.')
 
         # Get working hours for the selected day
-        working_hours = WorkingHour.objects.filter(day=reservation.weekday()).first()
+        working_hours = WorkingHour.objects.filter(day=reservation.weekday(), availability=0).first()
 
         if not working_hours:
             self.add_error('reservation', 'No reservations allowed on this day.')
