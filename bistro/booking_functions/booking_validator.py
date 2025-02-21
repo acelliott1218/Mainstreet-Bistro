@@ -5,6 +5,9 @@ from django.utils.timezone import localtime
 
 
 def validator(self, reservation, end_time, data):
+    '''
+    Ensures that new and edited bookings conform to the Bistro's actual working hours.
+    '''
 
     now = timezone.now()
 
@@ -18,14 +21,16 @@ def validator(self, reservation, end_time, data):
 
     # Get working hours for the selected day
     working_hours = WorkingHour.objects.filter(day=reservation.weekday(), availability=0).first()
+    acceptable_start = working_hours.start_time <= reservation.time() <= working_hours.end_time
+    acceptable_end = working_hours.start_time <= end_time.time() <= working_hours.end_time
 
     if not working_hours:
         self.add_error('reservation', 'No reservations allowed on this day.')
     else:
         # Ensure reservation falls within working hours
-        if not (working_hours.start_time <= reservation.time() <= working_hours.end_time):
+        if not acceptable_start:
             self.add_error('reservation', f'Reservations must be between {working_hours.start_time} and {working_hours.end_time}.')
-        if not (working_hours.start_time <= end_time.time() <= working_hours.end_time):
+        if not acceptable_end:
             self.add_error('end_time', f'Reservations must end by {working_hours.end_time}.')
 
     # Restrict booking duration (30 min - 3 hours)

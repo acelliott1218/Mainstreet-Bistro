@@ -20,6 +20,9 @@ class Table(models.Model):
         return f'{self.number}. {self.category} with {self.seats} seats for {self.capacity} people'
 
 class WorkingHour(models.Model):
+    '''
+    Allows post-launch updates to working hours. Will be changed to use calendar logic instead in the future.
+    '''
     DAY_CHOICES = (
         (0, "Monday"),
         (1, "Tuesday"),
@@ -45,6 +48,9 @@ class WorkingHour(models.Model):
         return f"Open on {day_name} from {self.start_time} to {self.end_time}"
 
 class Booking(models.Model):
+    '''
+    Exists to actually allow the bookings in the first place. 
+    '''
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     reservation = models.DateTimeField()
