@@ -159,7 +159,8 @@ class CancelBookingView(DeleteView):
 
 
 class BookingEditForm(ModelForm):
-    # credit: staccato on https://stackoverflow.com/questions/17985452/how-do-i-use-updateview
+    # credit: staccato:
+    # https://stackoverflow.com/questions/17985452/how-do-i-use-updateview
     '''
     Creates a ModelForm, since a regular one wasn't working
     '''

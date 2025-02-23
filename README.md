@@ -186,7 +186,7 @@ Form validation has been undertaken to ensure reservations comply not only with 
 + [Gitpod](https://gitpod.io)
     - Preferred IDE, used to actually write the code
 + [DBDiagraph](https://dbdiagram.io)
-    - ERD Visualization
+    - ERD visualization and generator
 + [CI Python Linter](https://pep8ci.herokuapp.com)
     - Code quality advisor software for error and mistakes detection
 
@@ -232,11 +232,13 @@ It is extremely crucial that reservations follow both chronological rules and wo
 
 ### **Other Tests**
 
-All Python files have been inspected using a pep8 linter, and no errors have been detected.
+All Python files have been inspected using a pep8 linter, and no errors have been detected (barring a few lines being too long)
 
 [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com)
 
-![linter tests](media/readme-images/linter-results.jpg)
+All HTML and CSS were run through the W3C linter from view source view
+![HTML Valid](README_images/img/htmlvalid.jpg)
+![CSS Valid](README_images/img/cssvalid.jpg)
 
 ### **Unresolved Errors, Issues and Bugs**
 
