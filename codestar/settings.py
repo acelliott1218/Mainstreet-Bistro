@@ -49,6 +49,9 @@ INSTALLED_APPS = [
 
     #for the admin calendar
     "django_flatpickr",
+
+    #bootstrap
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +143,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Login url
 LOGIN_URL = '/accounts/login/'
+
+#edits to make email mandatory
+ACCOUNT_EMAIL_REQUIRED = True
+
+
+
 
 #Time-zone enforcing
 TIME_ZONE = 'UTC'

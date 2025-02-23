@@ -16,6 +16,11 @@ from bistro.booking_functions.get_tab_category_list import get_tab_category_list
 from bistro.booking_functions.get_table_category_human import get_table_category_human
 # Create your views here.
 
+def HomeView(request):
+    template_name = 'index.html'
+    context = {'user':request.user}
+    return render(request, "index.html", context)
+
 
 def TableListView(request):
     '''
@@ -28,10 +33,11 @@ def TableListView(request):
     return render(request, 'table_list_view.html', context)
 
 
-class BookingList(ListView):
+class BookingList(LoginRequiredMixin, ListView):
     '''
     Gets a user's bookings, or allows staff members to view all current ones
     '''
+    login_url = '/accounts/login/'
     model = Booking
     template_name = 'booking_list.html'
 
