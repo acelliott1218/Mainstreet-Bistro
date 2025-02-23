@@ -20,45 +20,48 @@ To create a "proof of concept" of an up-scale restaurant, ready to receive reser
 
 ### **First Time Users Goals**
 
-+ As a parent of popular children, I want to know what foods are popular right now before anyone else's kids come to my house.
-+ As someone who rarely hosts guests at my house, I only know my food preferences; I'd like to make an educated guess about others, rather than just make guesses.
-+ I'm curious if my food preferences are very unique or not.
++ As a customer, I want to make reservations online
++ As a business owner, I want to be able to set my own working days
++ I know I want a reservation, but I'd like to see table capacity
 
 ### **Frequent User Goals**
 
-+ I own a small grocery store, I want to stay on top of any shifting trends.
-+ I run a cooking channel, so if people start getting really into potatoes, I want to be ready to shift my videos accordingly.
-+ I'm someone obsessed with data, and I want to see if the general public's food preferences change or stay the same.
++ I love eating out, and I don't want to wait for a table
++ Although our hours are usually consistent, I'd like to have the flexibility to block certain days from being reserved
++ I'm a very busy person, and I often make reservations in a rush -- I want to be sure my reservations are flexible.
 
 ### **All User goals**
 
-+ I want solid data on the different popularities of food.
-+ I want to know what kinds of food will make me popular.
-+ I don't want to deal with a cluttered website -- I just want the numbers!
++ I want to reserve a table to make sure I don't have to wait
++ I want to be sure my reservations are when the restaurant is open
++ I can live without seeing a menu online, but I want to see all my options are tables
 
 ### **Fulfillment**
 
-Because the application is terminal-based, the appearance stays minimalistic, ensuring a low chance of getting distracted with unnecessary clutter.
-> I don't want to deal with a cluttered website -- I just want the numbers!
+The table list will allow logged in users to see all four classes of table available to them
+> I can live without seeing a menu online, but I want to see all my options are tables
 
-After inputting your own preferences, the average scores for non-vegetarians or vegetarians, depending on your preferences, will print out, along with the most popular food at the moment.
-> As a parent of popular children, I want to know what foods are popular right now before anyone else's kids come to my house.
+The easy to use reservation system ensures you won't have to wait!
+> I love eating out, and I don't want to wait for a table
 
->As someone who rarely hosts guests at my house, I only know my food preferences; I'd like to make an educated guess about others, rather than just make guesses.
+> As a customer, I want to make reservations online
 
+> I want to reserve a table to make sure I don't have to wait
 
->I own a small grocery store, I want to stay on top of any shifting trends.
+Rather than fixed dates, working hours are configurable in the admin panel. Admins can select whether a day is available or not, as well as its specific hours. (Any input can be given for working hours on closed days)
+>Although our hours are usually consistent, I'd like to have the flexibility to block certain days from being reserved
 
->I'm someone obsessed with data, and I want to see if the general public's food preferences change or stay the same.
+>As a business owner, I want to be able to set my own working days
 
->I want solid data on the different popularities of food.
+Reservations can be cancelled or modified from the booking list panel, which is visible to all logged in users.
+>I'm a very busy person, and I often make reservations in a rush -- I want to be sure my reservations are flexible.
 
-The survey will tell you the current most popular food (out of the six or nine, depending on user's diet choice).
->I'm curious if my food preferences are very unique or not.
+Table capacity is listed upon clicking any of the table options!
+>I know I want a reservation, but I'd like to see table capacity
 
->I want to know what kinds of food will make me popular.
+Form validation has been undertaken to ensure reservations comply not only with working hours/days, but also cannot be set in the past or for more than three hours!
+>I want to be sure my reservations are when the restaurant is open
 
->I run a cooking channel, so if people start getting really into potatoes, I want to be ready to shift my videos accordingly.
 
 
 ***
@@ -67,109 +70,81 @@ The survey will tell you the current most popular food (out of the six or nine, 
 
 ### **Navigation**
 
-+ After opening the survey, users will be asked their name -- for users with no terminal experience, this will open the door to typing in answers.
-+ After being asked for their name, users are then asked if they're vegetarians or not.
-+ The app will walk you through two or three separate questions.
-+ Each question corresponds to a category (everyone is asked about fruits and vegetables, and non-vegetarians are asked another question about meat).
-+ Users will not need to do anything for their data to be put into the correct column, other than the initial diet question.
++ Upon opening the site, users are greeted with the bistro's dedication to high-quality ingredients
++ Users who are not logged in will not be able to create a booking
++ Users who are logged in are able to view their current reservation
 
 **Starting Screen**  
-![starting screen](media/readme-images/start.jpg)
+![starting screen](README_images/img/start.jpg)
 
-**Input Name**  
-![input user's name](media/readme-images/name.jpg)
+**Table List**  
+![display available tables](README_images/img/tablelist.jpg)
 
-**Input Diet**  
-![input user's diet](media/readme-images/diet.jpg)
+**Booking List**  
+![display user's bookings](media/readme-images/diet.jpg)
 
-**Input Survey Answers**  
-![display trading statistics](media/readme-images/survey.jpg)
+**Manage Booking**  
+![display manage screen](README_images/img/managebookings.jpg)
 
-**Display Diet Averages and Favorite**
-![display diet averages](media/readme-images/averages.jpg)
+**Cancel Booking**
+![display cancel screen](README_images/img/cancelbooking.jpg)
 
 
 
-### **Survey Input**
+### **Reservation Input**
 
-+ Inputs can only be made with the keyboard.
-+ Input is validated wherever an input can be made, so that it fits the google sheet.
++ Reservations cannot be made in the past, or end in the past
++ Reservation is validated to make sure it complies with preset rules, both in the admin panel and preset time-limits
 + Input validation testing can be seen in the testing section.
 
-**Input for diet**
-+ Much of the program depends on a "yes" or "no" answer to the diet question. A "y" or "n" response will also be accepted.
+**Input for managing reservations**
++ Reservation management follows the same rules as the initial reservation
 
-![diet input](media/readme-images/diet2.jpg)
-
-+ When a choice is made, both the content of the survey and where the diet is stored are decided.
-
-+ If a user puts in anything other than "yes"/"y" or "no"/"n", they are prompted to try the question again. This ensures the program not only runs correctly, but that the data is correctly sorted.
-
-![diet incorrect input](media/readme-images/diet-wrong.jpg)
-
-**Input for Rating Foods**
-+ After the diet field has been satisfied, users are prompted to rate three foods from a value of 1-10.
-
-+ If the user puts in anything other than a number between 1-10, the question is repeated.
-
-![survey incorrect input](media/readme-images/survey-wrong.jpg)
++ Users cannot edit other users' bookings from the frontend, even as admins
 
 
-**All user inputs are valid**
-+ If the survey's questions are answered correctly, the data is pushed to either the "Standard" or "Vegetarian" tabs in Google Sheets.
+
+**Reservation is valid**
++ If the reservation is valid, tables are available, and the bistro is open, users are redirected to a success htmlresponse page.
 
 
-![answer is valid](media/readme-images/survey-correct.jpg)
+![booking successs](README_images/img/bookingsuccess.jpg)
 
-+ The number of responses is also increased by one -- this is done after validation to ensure incomplete responses aren't counted.
++ The table is then no longer available to be booked at the same time by others, and is accessible from the aforementioned booking list.
 
 **Data is incorrect**
-+ If the diet receives an incorrect value, eg, anything other than "y"/"yes" or "n"/"no", they are made to input another response. See previous error images as an example.
-
-+ If the user inputs a number not between 1-10, a number with a decimal space, or a letter, they are asked the question again.
++ The template will refresh if there are any errors, and tell the user which things need to be fixed (type of table, time, day, etc)
 
 
 ## **Features**
 
 ### **Existing Features**
 
-**Program**
-+ Terminal based for quick responsiveness
-+ Google sheet to contain survey data
-+ The simple instructions and automation ensures the program is applicable for all ages, requiring minimal tech literacy
+**Configurable Working Days**
++ Working days are configurable through the admin panel
++ This allows admins to block reservations during predetermined events or holidays
++ On the flipside, admins can also change the working hours for certain days, or even allow reservations on Sundays.
 
-**Inputs**
-+ This program uses keyboard inputs for quick navigation
-+ Data input to fill out a google sheet
-+ Input validation for input fields to minimize incorrect data entries or breaking the program
+**Managing and Cancelling**
++ Users who have made a booking can cancel at any time
++ Users can also modify when their bookings will be
++ Nobody can change or cancel bookings from the frontend, other than the initial user
 
-**Current averages for a given diet**
-+ After the survey is completed, users will be given a dictionary with the averages for their diet-group
-+ This uses the number of responses to divide each element in the relevant sheet, added together
-
-**Most Popular**
-+ The averages list of the user's diet-group is then analyzed
-+ The cell with the highest average is, therefore, the most popular
-+ This information is then relayed to users at the end of the survey.
-
-**Color Coding**
-+ Error messages are red
-+ Each survey question is color-coded, so users don't get confused
-+ When the survey is simply talking, the printed statement is blue
-+ When the survey is working, or giving data, the printed statement is cyan
-+ Finally, the rating instruction to separate values by commas is bright white, in contrast to the instruction to rate between 1-10
 
 ### **Features left to implement**
 
-+ Ability to view the data for the not-selected food-group
-> Since the application is intended for personal use first, and commercial use second, this feature was not implented due to time-constraints
-> For now, users who are curious about the other end can have a friend whose preferences correspond answer the survey, or take it again themselves. 
++ Better images
+> The program currently uses images from the tutorial I followed, but they get the point across.
+> The beans background isn't the worst fit for a bistro, but it's also not the best.
 
-+ A final question before the data is sent to Google sheets
-> The questions are very simple, and not exactly life-or-death, so for now this feature is absent.
++ Calendar-based working days
+> The admin panel working days could be changed to be based on a set calendar, with default values, but due to time-constraints this isn't possible.
 
-+ Do the survey again without pressing "run program"
-> Since this is a survey, it's suboptimal to encourage users to put in answers to it more than once.
++ Better success page
+> It's just a blank htmlResponse right now, so that's not ideal
+
++ Email on reservation
+> Right now, users could pull up their reservation from the site, but emails could make it easier.
 
 ***
 
@@ -179,6 +154,7 @@ The survey will tell you the current most popular food (out of the six or nine, 
 
 + [Python](https://www.python.org/)
     - Main programming language used in this project
++ [Django](https://www.djangoproject.com)
 
 ### **Libraries**
 
@@ -199,8 +175,8 @@ The survey will tell you the current most popular food (out of the six or nine, 
     - Used to deploy the project
 + [Gitpod](https://gitpod.io)
     - Preferred IDE, used to actually write the code
-+ [Lucid Charts](https://www.lucidchart.com/pages/)
-    - Data and chart visualization
++ [DBDiagraph](https://dbdiagram.io)
+    - ERD Visualization
 + [CI Python Linter](https://pep8ci.herokuapp.com)
     - Code quality advisor software for error and mistakes detection
 
@@ -208,70 +184,41 @@ The survey will tell you the current most popular food (out of the six or nine, 
 
 ## **Testing**
 
-+ Each input option was tested to ensure only the intended options are put in
-+ Every thinkable error was tested for given exceptions
-+ For reference, the valid input is "yes" or "no" (or "y" or "n") for the diet question
-+ Valid input for the rating questions are only whole numbers between 1 and 10, separated by commas
-+ Since the internet connects the entire world, it's better safe than sorry. therefore, the name input is not restricted.
++ Form validation was tested extensively throughout development
++ Since this is a local restaurant, local time is sufficient
++ Account-level testing was done to ensure nobody could vandalize other patrons' reservations
++ LoginRequired was tested to ensure users are routinely herded to make an account
+
 
 ### **Input Validation**
 
-In this program are various methods for inputting data:
+It is extremely crucial that reservations follow both chronological rules and working hours.
 
-+ Using the keyboard to rate food groups
-+ Using the keyboard to type "yes" or "no" to the diet question
++ **Unacceptable Reservation Times.**
 
-Each input field within the program is safeguarded against errors through one of the following mechanisms:
-
-+ **Restricting input to the diet question to only "yes"/"y" or "no"/"n".**
-
-![diet validation](media/readme-images/diet-wrong.jpg)
+![date validation](README_images/img/reservwrong.jpg)
 
 
-+ **Validate Ratings**  
-    - Every rating must be 3 whole numbers, between 1-10, and separated by commas. See above input examples.
++ **Cannot be in the past**  
+    - No dates before "now" are accepted, and reservations must end after they begin.
 
 
-+ **Validate Numbers with Decimals**  
-    - As depicted in the image below, only numerical inputs with no decimals are accepted.
++ **Cannot exceed three hours or be less than 30 minutes**  
+    - Therefor, it is impossible to create ridiculous reservations, meaning user experience for other visitors isn't compromised.
 
-![validate numbers without decimals](media/readme-images/decimal-wrong.jpg)
+
 
 ### **Input Validation Testing**
-Validation is obviously crucial for any programming project, and in this case, almost everything hinges on a correct input to the diet question -- otherwise, the intended sorting will not happen, and users may not be asked the meat question at all.
-
-Testing has been conducted the following way:
-1. Running the program
-2. Following the instructions to enter various inputs
-3. At every step the following inputs have been tested
-
-| Input              |       |        | Value    |              |              |   |   |   |
-| ------------------ | ----- | ------ | -------- | ------------ | ------------ | - | - | - |
-| Numbers to Ratings | 1,2,3 | 1,11,3 | 10,5,5.5 | 10.3333,5,10 | 10,10,11.555 | 10,10,10,10  |   |   |
-| Numbers to Diet    | 1     | 2      | 0        |              |              |   |   |   |
-| Words to Diet      | Yes   | yes    | No       | no           | Y            | y | N | n |
-| Words to ratings   | Yes   | no     | No       | no           | Y            | y | N | n |
-|                    |       |        |          |              |              |   |   |   |
-
-Thus, the project is ready!
-
-Correct Input - The program moves along accordingly
-
-![correct message](media/readme-images/survey-correct.jpg)
-
-Incorrect Input = The input is declined and a decline message in red is displayed. The program reacts and repeats the last input sequence until valid input is provided. See prior images for an example.
 
 **Testing Results**
 | Test                                              | Expected  | Result    | Intended Use |
 | ------------------------------------------------- | --------- | --------- | ------------ |
-| Acceptable Numbers in Rating                      | Pass      | Pass      | Yes          |
-| Unacceptable Numbers in Rating                    | Exception | Exception | Yes          |
-| Letters in Rating                                 | Exception | Exception | Yes          |
-| Numbers in Diet                                   | Exception | Exception | Yes          |
-| Value Other Than "yes", "y", "no", or "n" in Diet | Exception | Exception | Yes          |
-| Acceptable Values in Diet                         | Pass      | Pass      | Yes          |
-| No Commas Separating Values in Rating             | Exception | Exception | Yes          |
-| More Than 3 Values in Rating                      | Exception | Exception | Yes          ||
+| Users cannot make more than one booking           | AddError  | AddError  | Yes          |
+| Users cannot view booking list without logging in | No Button | No Button | Yes          |
+| Reservations can only be made during certain times| AddError  | AddError  | Yes          |
+| Reservations must be made on working days         | AddError  | AddError  | Yes          |
+| Reservations must end after they begin            | AddError  | AddError  | Yes          |
+| Reservations cannot have any part in the past     | AddError  | AddError  | Yes          ||
 
 ### **Other Tests**
 
@@ -293,7 +240,7 @@ No issues known so far
 
 The project was started by navigating to the [template provided](https://github.com/Code-Institute-Org/p3-template) and clicking 'Use this template'. Under Repository name I input food-survey and checked the 'Include all branches' checkbox. 
 
-I found the program on my Github account by going to [Gitpod](https://gitpod.io), selecting "New Workspace", selecting my Github account, and searching for "Food Survey".
+I found the program on my Github account by going to [Gitpod](https://gitpod.io), selecting "New Workspace", selecting my Github account, and searching for "Mainstreet Bistro".
 
 + git add . - This command was used to add all changes made to the file
 
@@ -310,7 +257,7 @@ I found the program on my Github account by going to [Gitpod](https://gitpod.io)
 5. Select VSCode 1.90.1
 6. Select preferred storage class
 7. Hit "continue"
-8. Type "python3 run.py"
+8. Type "python3 manage.py runserver"
 
 To stop the script file:
 + "Ctrl + C" - To stop the current file from running
@@ -322,13 +269,13 @@ My Food Survey project was deployed using the Gitpod IDE, using Git and GitHub f
 
 1. Get Python file ready for deployment
 
-> Ensure the Python project is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
+> Ensure the Django project is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
 
 > pip3 freeze > requirements.txt
 
-2. Pushing GitHub
+2. Configure static data
 
-> Make a commit and push the current version of the program to GitHub.
+> Add whitespace, reconfigure static files to match Heroku standard
 
 > git commit -m "..."  
 > git push
@@ -339,23 +286,24 @@ My Food Survey project was deployed using the Gitpod IDE, using Git and GitHub f
 
 4. Heroku project settings
 
-> In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields. In the first field "KEYS" insert the word "CREDS". The second field "VALUE" copy and paste the contents of the CREDS.json file. This file is not open to the public and must be kept secret.
+> In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields. The first field has the database from Code Institute, while the second has the relevant secretkey
 
-5. Heroku Buildpacks
 
-> Head to "Buildpacks" section and click "Add Buildpack". In the newly opened window, select "Python" then "Add Buildpack". Repeat this step and add "Nodejs" next.
-
-6. Connecting to GitHub
+5. Connecting to GitHub
 
 > Click the "Deploy" tab and select "GitHub" and then "Connect to Github".
 
-7. Selecting the Project
+6. Selecting the Project
 
 > After successfully connecting to GitHub a search bar opens. Type the name of the repository your project is in. A dropdown menu will open, click on the correct repository. This links up the repository from GitHub to heroku.
 
-8. Deployment
+7. Deployment
 
 > Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finished, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
+
+8. Re-enter admin panel info
+
+>Moving to Heroku, at least for me, wiped the WorkingHours and Tables from the admin panel -- so it's also necessary to recreate them on the Heroku side through the relevant admin panel.
 
 ***
 
@@ -363,18 +311,26 @@ My Food Survey project was deployed using the Gitpod IDE, using Git and GitHub f
 
 ### **Project Idea**
 
-The project was taken from the Project 3 ideas page in the FullstackDev program from CodeInstitute. Food was decided as the subject, since everyone eats.
+The project was taken from the Project 4 ideas page in the FullstackDev program from CodeInstitute. 
 
 ### **Content**
 
-The content of this tool was created by me, aka. [Acelliott1218](https://github.com/acelliott1218), along with snippets credited in the comments of the run.py file.
+The content of this page was created by me, aka. [Acelliott1218](https://github.com/acelliott1218), along with the template and tutorial credited below, plus snippets within the code's comments.
 
 The Python code provided was made with the knowledge gained through the CodeInstitute Full Stack Developer course.
 
-Google was used to find answers to questions which were not covered in the CodeInstitute Course. These are credit in the comments of the document itself.
+The internet was used to find answers to questions which were not covered in the CodeInstitute Course. These sources are credited in the comments of the document itself.
 
 ### **Acknowledgements**
 
-I'd like to thank my mentor [Daisy McGirr](https://github.com/Dee-McG) for her guidance throughout my project.
+DarshannDev for the initial tutorial
 
-And [NixTS](https://github.com/NixTS) for the README from which this README's content is based on.
+Django documentation
+
+StartBootstrap Business Casual Theme
+
+Certain code-snippets were run through ChatGPT to find errors, code has been refactored to make it more original
+
+DBDiagram.io for the visual ERD
+
+And [NixTS](https://github.com/NixTS) for the README from which this README's content is based on. (Reused the template from my Python project)
