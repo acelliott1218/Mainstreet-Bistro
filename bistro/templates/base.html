@@ -1,8 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
+    <title>Mainstreet Bistro</title>
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -10,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Mainstreet Bistro</title>
     <link rel="icon" type="image/x-icon" href="{% static 'bistro/assets/favicon.ico' %}" />
     <!-- Google fonts-->
     <link
@@ -54,4 +54,3 @@
     <main class="container mt-4">
         {% block content %}{% endblock %}
     </main>
-</body>
