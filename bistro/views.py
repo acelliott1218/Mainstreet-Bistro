@@ -27,6 +27,8 @@ def TableListView(request):
     Gets an initial list of tables
     '''
     tab_category_list = get_tab_category_list()
+    refined_tables = Table.objects.all()
+    table_capacity = [table.seats for table in refined_tables]
     context = {
         'table_list': tab_category_list,
     }
