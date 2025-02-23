@@ -112,8 +112,14 @@ class TableDetailView(LoginRequiredMixin, View):
                 booking.save()
                 return HttpResponse(booking)
             else:
+                form.add_error('reservation', 'There are no more of these tables left!')
                 # if there aren't available tables, the user is given this instead
-                return HttpResponse('All of this category of tables are unavailable')
+                context = {
+                'form': form,
+                'table_category': get_table_category_human(category),
+                'form_errors': form.errors
+            }
+            return render(request, 'table_detail_view.html', context)
                 #this will be changed from an HttpResponse in the future
         else:
             context = {

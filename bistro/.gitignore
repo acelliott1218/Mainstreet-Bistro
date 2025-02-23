@@ -1,0 +1,4 @@
+.env
+*.pem 
+db.sqlite3 
+__pycache__/
