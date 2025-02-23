@@ -28,7 +28,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-acelliott12-mainstreetb-kigzqbiz2jt.ws-eu117.gitpod.io', 'django-ms-bistro-db8ecf4c30b8.herokuapp.com']
+ALLOWED_HOSTS = [
+    '8000-acelliott12-mainstreetb-kigzqbiz2jt.ws-eu117.gitpod.io', 
+    'django-ms-bistro-db8ecf4c30b8.herokuapp.com',
+    '.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+]
+
 
 
 # Application definition
