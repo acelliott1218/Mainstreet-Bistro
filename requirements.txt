@@ -9,6 +9,7 @@ django-flatpickr==2.0.3
 django-phonenumber-field==8.0.0
 django-picklefield==3.2
 django-q2==1.7.6
+gunicorn==23.0.0
 icalendar==6.1.1
 phonenumbers==8.13.54
 pip-autoremove==0.10.0
