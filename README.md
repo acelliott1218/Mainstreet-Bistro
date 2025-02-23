@@ -1,14 +1,22 @@
-From Darshan Dev HMS Tutorial as a base (link to be added)
 
 # **Food Survey**
 
 Live Website: [Food Survey](https://django-ms-bistro-db8ecf4c30b8.herokuapp.com)
 
-A small bistro located on the main street of Novi Sad, Serbia.
+A small bistro located on the main street of Novi Sad, Serbia. Since this reservation system for said hypothetical website is based on a physical location, timezone details were omitted (unnecessary).
 
+**ERD**
 ![ERD](README_images/img/ERD.jpg)
 
+**Wireframes**
 
+![Home Wireframes](README_images/img/wfhome.jpg)
+![List Wireframes](README_images/img/wflist.jpg)
+![Bookings Wireframes](README_images/img/wfbookings.jpg)
+![Manage Wireframes](README_images/img/wfmanage.jpg)
+![Cancel Wireframes](README_images/img/wfcancel.jpg)
+
+Generated with wireframify and page to wireframes
 
 ## **Project Goals**
 
@@ -153,15 +161,17 @@ Form validation has been undertaken to ensure reservations comply not only with 
 ### **Language**
 
 + [Python](https://www.python.org/)
-    - Main programming language used in this project
+    - Main programming language supporting this project
 + [Django](https://www.djangoproject.com)
+    - Primary framework this project was written in
 
 ### **Libraries**
 
-+ [Colorama](https://pypi.org/project/colorama/)
-    - Used to color terminal text
-+ [GSpread](https://docs.gspread.org/en/v5.10.0/)
-    - Python API for google sheets
++ [AllAuth](https://docs.allauth.org/en/latest/)
+    - Used to create users
++ [BootStrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+    - Used to style the HTML
+
 
 ### **Tools**
 
@@ -323,7 +333,9 @@ The internet was used to find answers to questions which were not covered in the
 
 ### **Acknowledgements**
 
-DarshannDev for the initial tutorial
+[DarshannDev]((https://github.com/Darshan4114).) for the initial tutorial
+
+Various commenters on Reddit, Stackoverflow, etc, credited in the comments
 
 Django documentation
 

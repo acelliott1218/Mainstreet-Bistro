@@ -57,9 +57,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    #for the admin calendar
-    "django_flatpickr",
-
     #bootstrap
     'bootstrap5',
 ]
