@@ -16,9 +16,10 @@ from bistro.booking_functions.get_tab_category_list import get_tab_category_list
 from bistro.booking_functions.get_table_category_human import get_table_category_human
 # Create your views here.
 
+
 def HomeView(request):
     template_name = 'index.html'
-    context = {'user':request.user}
+    context = {'user': request.user}
     return render(request, "index.html", context)
 
 
@@ -61,18 +62,20 @@ class TableDetailView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         '''
-        Gets the actual booking form and table details 
+        Gets the actual booking form and table details
         '''
         category = self.kwargs.get('category', None)
-        tab_category_human = get_table_category_human(category) #Makes sure users see the actual table name, instead of (for example) "BTH"
-        form = AvailabilityForm() #calls the forms.py logic
+        # Makes sure users see the actual table name, instead of (for example) "BTH"
+        tab_category_human = get_table_category_human(category)
+        form = AvailabilityForm()  # calls the forms.py logic
         user = request.user
-        has_booking = Booking.objects.filter(user=user).exists() #finds the user's bookings, used later to ensure one user can't have multiple ones
+        # finds the user's bookings, used later to ensure one user can't have multiple ones
+        has_booking = Booking.objects.filter(user=user).exists()
         if tab_category_human is not None:
             context = {
                 'table_category': tab_category_human,
                 'form': form,
-                'has_booking': has_booking #only relevant to hide the posting button
+                'has_booking': has_booking  # only relevant to hide the posting button
             }
             return render(request, 'table_detail_view.html', context)
 
@@ -88,23 +91,26 @@ class TableDetailView(LoginRequiredMixin, View):
         user = request.user
         has_booking = Booking.objects.filter(user=user).exists()
         if has_booking:
-            form.add_error('reservation', 'You can only have one reservation at a time!')
+            form.add_error(
+                'reservation', 'You can only have one reservation at a time!')
             context = {
-            'form': form,
-            'table_category': get_table_category_human(category),
-            'form_errors': form.errors
+                'form': form,
+                'table_category': get_table_category_human(category),
+                'form_errors': form.errors
             }
-            return render(request,'table_detail_view.html', context)
+            return render(request, 'table_detail_view.html', context)
         if form.is_valid():
             data = form.cleaned_data
 
             available = []
 
-            for table in table_list: #checks the availability of each table
+            for table in table_list:  # checks the availability of each table
                 if is_free(table, data['reservation'], data['end_time']):
-                    available.append(table) #adds the available tables to the available variable
+                    # adds the available tables to the available variable
+                    available.append(table)
             if len(available) > 0:
-                table = available[0] #gives the first available table of the relevant category
+                # gives the first available table of the relevant category
+                table = available[0]
                 booking = Booking.objects.create(
                     user=self.request.user,
                     table=table,
@@ -114,22 +120,23 @@ class TableDetailView(LoginRequiredMixin, View):
                 booking.save()
                 return HttpResponse(booking)
             else:
-                form.add_error('reservation', 'There are no more of these tables left!')
+                form.add_error(
+                    'reservation', 'There are no more of these tables left!')
                 # if there aren't available tables, the user is given this instead
                 context = {
-                'form': form,
-                'table_category': get_table_category_human(category),
-                'form_errors': form.errors
-            }
+                    'form': form,
+                    'table_category': get_table_category_human(category),
+                    'form_errors': form.errors
+                }
             return render(request, 'table_detail_view.html', context)
-                #this will be changed from an HttpResponse in the future
+            # this will be changed from an HttpResponse in the future
         else:
             context = {
                 'form': form,
                 'table_category': get_table_category_human(category),
                 'form_errors': form.errors
             }
-            return render(request, 'table_detail_view.html', context) 
+            return render(request, 'table_detail_view.html', context)
 
 
 class CancelBookingView(DeleteView):
@@ -139,6 +146,7 @@ class CancelBookingView(DeleteView):
     model = Booking
     template_name = 'booking_cancel_view.html'
     success_url = reverse_lazy('bistro:BookingList')
+
     def get_object(self, queryset=None):
         '''
         Makes sure the user is actually logged in, prevents
@@ -150,9 +158,8 @@ class CancelBookingView(DeleteView):
         return booking
 
 
-
-class BookingEditForm(ModelForm): 
-    #credit: staccato on https://stackoverflow.com/questions/17985452/how-do-i-use-updateview
+class BookingEditForm(ModelForm):
+    # credit: staccato on https://stackoverflow.com/questions/17985452/how-do-i-use-updateview
     '''
     Creates a ModelForm, since a regular one wasn't working
     '''
@@ -160,12 +167,13 @@ class BookingEditForm(ModelForm):
         model = Booking
         fields = ["reservation", "end_time"]
 
-    def clean(self): #this is just the same logic from forms.py
+    def clean(self):  # this is just the same logic from forms.py
         data = super().clean()
         reservation = data.get("reservation")
         end_time = data.get("end_time")
 
         validator(self, reservation, end_time, data)
+
 
 class EditBookingView(UpdateView):
     '''
@@ -183,9 +191,7 @@ class EditBookingView(UpdateView):
         changing bookings from other users.
         '''
         booking = get_object_or_404(Booking, pk=self.kwargs["pk"])
-        #from https://www.reddit.com/r/django/comments/ebbsrn/how_to_limit_users_to_only_edit_their_own_posts/
+        # from https://www.reddit.com/r/django/comments/ebbsrn/how_to_limit_users_to_only_edit_their_own_posts/
         if booking.user != self.request.user:
             raise PermissionDenied("You cannot edit this booking.")
         return booking
-
-
