@@ -143,6 +143,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Login url
 LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 #edits to make email mandatory
 ACCOUNT_EMAIL_REQUIRED = True

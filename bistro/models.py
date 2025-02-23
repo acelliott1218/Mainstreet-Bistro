@@ -64,3 +64,6 @@ class Booking(models.Model):
         return table_category
     def get_cancel_booking_url(self):
         return reverse_lazy('bistro:CancelBookingView', args=[self.pk, ])
+    def get_edit_booking_url(self):
+        return reverse_lazy('bistro:EditBookingView', args=[self.pk, ])
+

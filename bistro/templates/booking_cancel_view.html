@@ -1,62 +1,42 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>table Detail</title>
-    <script src="https://kit.fontawesome.com/692189991f.js" crossorigin="anonymous"></script>
-
-    <!-- Main StyleSheet -->
-    <link rel="stylesheet" href="{% static 'bistro/css/detail.css' %}">
-
-</head>
 
 <body>
-
-    <!-- Main Content -->
-    <div class="content">
-
-        <!-- table Image -->
-        <div class="image">
-            <img
-                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60">
-        </div>
-
-        <!-- table Details -->
-        <div class="table">
-
-            <!-- Div 1: Back to Home -->
-            <div class="home">
-                <a href="{% url 'bistro:TableList' %}"><i class="fas fa-arrow-alt-circle-left">Home</i></a>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Table Image -->
+            <div class="col-md-6 text-center">
+                <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="img-fluid rounded">
             </div>
-
-            <!-- Div 2: table Information -->
-            <div class="table-info">
-                <h1>{{table_category}}</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id optio rem saepe culpa architecto tempora
-                    numquam debitis reiciendis! Quaerat laudantium consequuntur doloribus quod placeat consectetur
-                    veniam,
-                    rerum repellendus magnam labore. </p>
-            </div>
-
-            <!-- Div 3: Table Booking Form -->
-            <form id="booking-form" action="" method="POST">
-
-                {% csrf_token %}
-                <h2>Are you sure you wanna cancel this Booking? Details-</h2>
-                <h3>{{booking.table.number}}{{booking.get_table_category}} {{booking}}</h3>
-                <!-- Input Div -->
-                <div class="input-div">
-                    <button type="submit">Cancel the Booking</button>
+            
+            <!-- Booking Cancel Form -->
+            <div class="col-md-6 bg-white">
+                <div class="mb-3">
+                    <a href="{% url 'bistro:TableList' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-alt-circle-left"></i> Home
+                    </a>
                 </div>
+                
+                <div class="table-info">
+                    <h1 class="mb-3">Cancel Your Booking</h1>
+                    <p>Are you sure you want to cancel this booking?</p>
+                    <h3>Table {{ booking.table.number }} - {{ booking.get_table_category }}</h3>
+                </div>
+                
+                <form id="cancel-booking-form" method="post" class="mt-3">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">Cancel the Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-            </form>
-        </div> <!-- END table Div -->
-
-    </div> <!-- END Main Content Div -->
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
+{% endblock %}
 </html>

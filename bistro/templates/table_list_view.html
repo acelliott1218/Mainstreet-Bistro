@@ -1,34 +1,33 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bistroina</title>
-    <!-- Main StyleSheet -->
-    <link rel="stylesheet" href="{% static 'bistro/css/home.css' %}">
-</head>
-
+{% block content %}
 <body>
-    <!-- Brand -->
-    <h1 id="brand">Main Street Bistro</h1>
+    <div class="container text-center mt-4">
+        <!-- Brand -->
+        <h1 class="site-heading text-center text-faded d-none d-lg-block">Main Street Bistro</h1>
 
-    <!-- Main Content -->
-    <div class="content">
-        {% for table_category, table_url in table_list %}
-        
-        <div class="table">
-            <a href="{{table_url}}">
-                <img
-                    src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60">
-
-                <h2>{{table_category}}</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi</p>
-            </a>
+        <!-- Main Content -->
+        <div class="row mt-4 justify-content-center">
+            {% for table_category, table_url in table_list %}
+            <div class="col-md-3 col-sm-6 mb-4 d-flex align-items-stretch">
+                <div class="card shadow-sm w-100">
+                    <a href="{{ table_url }}" class="text-decoration-none text-dark">
+                        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                            class="card-img-top rounded" alt="Table Image">
+                        <div class="card-body">
+                            <h2 class="h5">{{ table_category }}</h2>
+                            <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</body>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}
 </html>
